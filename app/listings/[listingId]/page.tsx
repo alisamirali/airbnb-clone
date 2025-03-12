@@ -1,21 +1,16 @@
-import { notFound } from "next/navigation";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
 import getReservations from "@/app/actions/getReservations";
 import { ClientOnly, EmptyState } from "@/app/components";
 import { ListingClient } from "@/app/listings/[listingId]/ListingClient";
 
-export default async function ListingPage({
-  params,
-}: {
-  params: { listingId: string };
-}) {
-  if (!params.listingId) {
-    return notFound();
-  }
+interface IParams {
+  listingId?: string;
+}
 
-  const listing = await getListingById({ listingId: params.listingId });
-  const reservations = await getReservations({ listingId: params.listingId });
+export default async function ListingPage({ params }: { params: IParams }) {
+  const listing = await getListingById(params);
+  const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
 
   if (!listing) {

@@ -2,16 +2,21 @@ import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-export async function DELETE(request: Request) {
+interface IParams {
+  listingId?: string;
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: IParams }
+) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  // استخراج listingId من URL
-  const { searchParams } = new URL(request.url);
-  const listingId = searchParams.get("listingId");
+  const { listingId } = params;
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid ID");
