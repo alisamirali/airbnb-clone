@@ -5,21 +5,17 @@ import getReservations from "@/app/actions/getReservations";
 import { ClientOnly, EmptyState } from "@/app/components";
 import { ListingClient } from "@/app/listings/[listingId]/ListingClient";
 
-interface ListingPageProps {
-  params: {
-    listingId?: string;
-  };
-}
-
-export default async function ListingPage({ params }: ListingPageProps) {
-  const { listingId } = params;
-
-  if (!listingId) {
+export default async function ListingPage({
+  params,
+}: {
+  params: { listingId: string };
+}) {
+  if (!params.listingId) {
     return notFound();
   }
 
-  const listing = await getListingById({ listingId });
-  const reservations = await getReservations({ listingId });
+  const listing = await getListingById({ listingId: params.listingId });
+  const reservations = await getReservations({ listingId: params.listingId });
   const currentUser = await getCurrentUser();
 
   if (!listing) {
