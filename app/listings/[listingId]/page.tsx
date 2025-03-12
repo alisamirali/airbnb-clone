@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { notFound } from "next/navigation";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
@@ -6,17 +5,21 @@ import getReservations from "@/app/actions/getReservations";
 import { ClientOnly, EmptyState } from "@/app/components";
 import { ListingClient } from "@/app/listings/[listingId]/ListingClient";
 
-interface IParams {
-  listingId?: string;
+interface ListingPageProps {
+  params: {
+    listingId?: string;
+  };
 }
 
-const ListingPage: NextPage<{ params: IParams }> = async ({ params }) => {
-  if (!params?.listingId) {
+export default async function ListingPage({ params }: ListingPageProps) {
+  const { listingId } = params;
+
+  if (!listingId) {
     return notFound();
   }
 
-  const listing = await getListingById(params);
-  const reservations = await getReservations(params);
+  const listing = await getListingById({ listingId });
+  const reservations = await getReservations({ listingId });
   const currentUser = await getCurrentUser();
 
   if (!listing) {
@@ -36,6 +39,4 @@ const ListingPage: NextPage<{ params: IParams }> = async ({ params }) => {
       />
     </ClientOnly>
   );
-};
-
-export default ListingPage;
+}
