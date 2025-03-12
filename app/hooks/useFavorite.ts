@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
@@ -7,11 +8,11 @@ import { SafeUser } from "@/app/types";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 
 interface IUseFavorite {
-  favoriteId: string;
+  listingId: string;
   currentUser?: SafeUser | null;
 }
 
-const useFavorite = ({ favoriteId, currentUser }: IUseFavorite) => {
+const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -19,8 +20,8 @@ const useFavorite = ({ favoriteId, currentUser }: IUseFavorite) => {
   const hasFavorite = useMemo(() => {
     const list = currentUser?.favoriteIds || [];
 
-    return list.includes(favoriteId);
-  }, [currentUser, favoriteId]);
+    return list.includes(listingId);
+  }, [currentUser, listingId]);
 
   const toggleFavorite = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,23 +35,19 @@ const useFavorite = ({ favoriteId, currentUser }: IUseFavorite) => {
         let request;
 
         if (hasFavorite) {
-          request = () => axios.delete(`/api/favorites/${favoriteId}`);
+          request = () => axios.delete(`/api/favorites/${listingId}`);
         } else {
-          request = () => axios.post(`/api/favorites/${favoriteId}`);
+          request = () => axios.post(`/api/favorites/${listingId}`);
         }
 
         await request();
-
         router.refresh();
-
-        toast.success("Success!");
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        toast.success("Success");
       } catch (error) {
         toast.error("Something went wrong.");
       }
     },
-
-    [currentUser, hasFavorite, favoriteId, loginModal, router]
+    [currentUser, hasFavorite, listingId, loginModal, router]
   );
 
   return {

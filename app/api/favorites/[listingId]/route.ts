@@ -1,54 +1,68 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-// POST handler
-export async function POST(request: NextRequest) {
+interface IParams {
+  listingId?: string;
+}
+
+export async function POST(request: Request, { params }: { params: IParams }) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  // Extract listingId from the URL
-  const listingId = request.nextUrl.pathname.split("/").pop();
+  const { listingId } = params;
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid ID");
   }
 
-  const favoriteIds = [...(currentUser.favoriteIds || []), listingId];
+  const favoriteIds = [...(currentUser.favoriteIds || [])];
+
+  favoriteIds.push(listingId);
 
   const user = await prisma.user.update({
-    where: { id: currentUser.id },
-    data: { favoriteIds },
+    where: {
+      id: currentUser.id,
+    },
+    data: {
+      favoriteIds,
+    },
   });
 
   return NextResponse.json(user);
 }
 
-// DELETE handler
-export async function DELETE(request: NextRequest) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: IParams }
+) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  // Extract listingId from the URL
-  const listingId = request.nextUrl.pathname.split("/").pop();
+  const { listingId } = params;
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid ID");
   }
 
-  const favoriteIds = (currentUser.favoriteIds || []).filter(
-    (id) => id !== listingId
-  );
+  let favoriteIds = [...(currentUser.favoriteIds || [])];
+
+  favoriteIds = favoriteIds.filter((id) => id !== listingId);
 
   const user = await prisma.user.update({
-    where: { id: currentUser.id },
-    data: { favoriteIds },
+    where: {
+      id: currentUser.id,
+    },
+    data: {
+      favoriteIds,
+    },
   });
 
   return NextResponse.json(user);
