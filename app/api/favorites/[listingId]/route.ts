@@ -13,7 +13,7 @@ export async function POST(request: Request, context: { params: IParams }) {
     return NextResponse.error();
   }
 
-  const { listingId } = context.params;
+  const { listingId } = context.params; // جلب listingId من context
 
   if (!listingId || typeof listingId !== "string") {
     throw new Error("Invalid ID");
