@@ -7,11 +7,11 @@ import { SafeUser } from "@/app/types";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 
 interface IUseFavorite {
-  listingId: string;
+  favoriteId: string;
   currentUser?: SafeUser | null;
 }
 
-const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
+const useFavorite = ({ favoriteId, currentUser }: IUseFavorite) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -19,8 +19,8 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   const hasFavorite = useMemo(() => {
     const list = currentUser?.favoriteIds || [];
 
-    return list.includes(listingId);
-  }, [currentUser, listingId]);
+    return list.includes(favoriteId);
+  }, [currentUser, favoriteId]);
 
   const toggleFavorite = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,9 +34,9 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
         let request;
 
         if (hasFavorite) {
-          request = () => axios.delete(`/api/favorites/${listingId}`);
+          request = () => axios.delete(`/api/favorites/${favoriteId}`);
         } else {
-          request = () => axios.post(`/api/favorites/${listingId}`);
+          request = () => axios.post(`/api/favorites/${favoriteId}`);
         }
 
         await request();
@@ -50,7 +50,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
       }
     },
 
-    [currentUser, hasFavorite, listingId, loginModal, router]
+    [currentUser, hasFavorite, favoriteId, loginModal, router]
   );
 
   return {
