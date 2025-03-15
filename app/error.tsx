@@ -1,17 +1,5 @@
-"use client";
-
-import { useEffect } from "react";
-
 import { EmptyState } from "@/app/components";
 
-type ErrorStateProps = {
-  error: Error;
-};
-
-export default function ErrorState({ error }: ErrorStateProps) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+export default function ErrorPage() {
   return <EmptyState title="Uh Oh" subtitle="Something went wrong!" />;
 }
