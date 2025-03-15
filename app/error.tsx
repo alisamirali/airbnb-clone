@@ -1,3 +1,5 @@
+"use client";
+
 import { EmptyState } from "@/app/components";
 
 export default function ErrorPage() {
