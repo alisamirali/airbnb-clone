@@ -1,14 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import getListings, { IListingsParams } from "@/app/actions/getListings";
+import getListings from "@/app/actions/getListings";
 import { ClientOnly, Container, EmptyState } from "@/app/components";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-type HomeProps = {
-  searchParams: IListingsParams;
-};
-
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = async ({ searchParams }: any) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
