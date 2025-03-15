@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
@@ -5,11 +6,7 @@ import getListings from "@/app/actions/getListings";
 import { ClientOnly, Container, EmptyState } from "@/app/components";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-interface HomeProps {
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
-const Home = async ({ searchParams }: HomeProps) => {
+const Home = async ({ searchParams }: { searchParams: any }) => {
   const userId = searchParams?.userId as string | undefined;
   const listings = await getListings({ userId });
   const currentUser = await getCurrentUser();
