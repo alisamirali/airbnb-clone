@@ -9,7 +9,7 @@ import { Button } from "@/app/components/Button";
 import { useCountries } from "@/app/hooks";
 import HeartButton from "@/app/components/HeartButton";
 
-interface ListingCardProps {
+type ListingCardProps = {
   data: SafeListing;
   reservation?: SafeReservation;
   onAction?: (id: string) => void;
@@ -17,7 +17,7 @@ interface ListingCardProps {
   actionLabel?: string;
   actionId?: string;
   currentUser?: SafeUser | null;
-}
+};
 
 const ListingCard: React.FC<ListingCardProps> = ({
   data,

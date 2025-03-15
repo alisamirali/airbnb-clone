@@ -3,11 +3,11 @@
 import { Button, Heading } from "@/app/components";
 import { useRouter } from "next/navigation";
 
-interface EmptyStateProps {
+type EmptyStateProps = {
   title?: string;
   subtitle?: string;
   showReset?: boolean;
-}
+};
 
 export function EmptyState({
   title = "No exact matches",

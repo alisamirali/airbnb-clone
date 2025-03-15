@@ -4,9 +4,9 @@ import getListings, { IListingsParams } from "@/app/actions/getListings";
 import { ClientOnly, Container, EmptyState } from "@/app/components";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-interface HomeProps {
+type HomeProps = {
   searchParams: IListingsParams;
-}
+};
 
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);

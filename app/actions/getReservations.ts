@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import prisma from "@/app/libs/prismadb";
 
-interface IParams {
-  listingId?: string;
-  userId?: string;
-  authorId?: string;
-}
-
-export default async function getReservations(params: IParams) {
+export default async function getReservations(params: any) {
   try {
     const { listingId, userId, authorId } = params;
 

@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-interface RantModalStore {
+type RantModalStore = {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-}
+};
 
 export const useRentModal = create<RantModalStore>((set) => ({
   isOpen: false,

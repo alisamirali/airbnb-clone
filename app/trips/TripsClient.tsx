@@ -9,10 +9,10 @@ import { SafeReservation, SafeUser } from "@/app/types";
 import ListingCard from "@/app/components/listings/ListingCard";
 import { Container, Heading } from "@/app/components";
 
-interface TripsClientProps {
+type TripsClientProps = {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
-}
+};
 
 export function TripsClient({ reservations, currentUser }: TripsClientProps) {
   const router = useRouter();

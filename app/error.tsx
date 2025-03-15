@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 import { EmptyState } from "@/app/components";
 
-interface ErrorStateProps {
+type ErrorStateProps = {
   error: Error;
-}
+};
 
 export default function ErrorState({ error }: ErrorStateProps) {
   useEffect(() => {

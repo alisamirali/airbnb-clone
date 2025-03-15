@@ -13,10 +13,10 @@ declare global {
 
 const uploadPreset = "m2xlhfqr";
 
-interface ImageUploadProps {
+type ImageUploadProps = {
   onChange: (value: string) => void;
   value: string;
-}
+};
 
 export function ImageUpload({ onChange, value }: ImageUploadProps) {
   const handleUpload = useCallback(

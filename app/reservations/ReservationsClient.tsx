@@ -9,10 +9,10 @@ import { SafeReservation, SafeUser } from "@/app/types";
 import ListingCard from "@/app/components/listings/ListingCard";
 import { Container, Heading } from "@/app/components";
 
-interface ReservationsClientProps {
+type ReservationsClientProps = {
   reservations: SafeReservation[];
   currentUser?: SafeUser | null;
-}
+};
 
 export function ReservationsClient({
   reservations,

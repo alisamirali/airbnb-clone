@@ -3,12 +3,12 @@
 import { useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
-interface CounterProps {
+type CounterProps = {
   title: string;
   subtitle: string;
   value: number;
   onChange: (value: number) => void;
-}
+};
 
 export function Counter({ title, subtitle, value, onChange }: CounterProps) {
   const onAdd = useCallback(() => {

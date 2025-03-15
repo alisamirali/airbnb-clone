@@ -19,13 +19,13 @@ const initialDateRange = {
   key: "selection",
 };
 
-interface ListingClientProps {
+type ListingClientProps = {
   reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
   currentUser?: SafeUser | null;
-}
+};
 
 export function ListingClient({
   listing,

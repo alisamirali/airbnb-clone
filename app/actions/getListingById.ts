@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import prisma from "@/app/libs/prismadb";
 
-interface IParams {
-  listingId?: string;
-}
-
-export default async function getListingById(params: IParams) {
+export default async function getListingById(params: any) {
   try {
     const { listingId } = params;
 

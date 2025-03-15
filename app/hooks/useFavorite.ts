@@ -7,10 +7,10 @@ import { toast } from "react-hot-toast";
 import { SafeUser } from "@/app/types";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 
-interface IUseFavorite {
+type IUseFavorite = {
   listingId: string;
   currentUser?: SafeUser | null;
-}
+};
 
 const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   const router = useRouter();

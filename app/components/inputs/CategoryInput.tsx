@@ -2,12 +2,12 @@
 
 import { IconType } from "react-icons";
 
-interface CategoryInputProps {
+type CategoryInputProps = {
   icon: IconType;
   label: string;
   selected?: boolean;
   onClick: (value: string) => void;
-}
+};
 
 export function CategoryInput({
   icon: Icon,

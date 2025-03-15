@@ -4,7 +4,7 @@ import { Button } from "@/app/components/Button";
 import { DatePicker } from "@/app/components/inputs";
 import { Range } from "react-date-range";
 
-interface ListingReservationProps {
+type ListingReservationProps = {
   price: number;
   dateRange: Range;
   totalPrice: number;
@@ -12,7 +12,7 @@ interface ListingReservationProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
-}
+};
 
 export function ListingReservation({
   price,

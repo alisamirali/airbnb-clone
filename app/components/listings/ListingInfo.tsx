@@ -11,7 +11,7 @@ const Map = dynamic(() => import("../Map"), {
   ssr: false,
 });
 
-interface ListingInfoProps {
+type ListingInfoProps = {
   user: SafeUser;
   description: string;
   guestCount: number;
@@ -25,7 +25,7 @@ interface ListingInfoProps {
       }
     | undefined;
   locationValue: string;
-}
+};
 
 export function ListingInfo({
   user,

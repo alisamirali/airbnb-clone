@@ -9,10 +9,10 @@ import { SafeListing, SafeUser } from "@/app/types";
 import ListingCard from "@/app/components/listings/ListingCard";
 import { Container, Heading } from "@/app/components";
 
-interface PropertiesClientProps {
+type PropertiesClientProps = {
   listings: SafeListing[];
   currentUser?: SafeUser | null;
-}
+};
 
 export function PropertiesClient({
   listings,

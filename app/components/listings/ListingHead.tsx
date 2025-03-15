@@ -8,13 +8,13 @@ import HeartButton from "../HeartButton";
 import { Heading } from "@/app/components/Heading";
 import { useCountries } from "@/app/hooks";
 
-interface ListingHeadProps {
+type ListingHeadProps = {
   title: string;
   locationValue: string;
   imageSrc: string;
   id: string;
   currentUser?: SafeUser | null;
-}
+};
 
 export function ListingHead({
   title,

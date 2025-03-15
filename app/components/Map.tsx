@@ -13,9 +13,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "/images/marker-shadow.png",
 });
 
-interface MapProps {
+type MapProps = {
   center?: number[];
-}
+};
 
 const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 

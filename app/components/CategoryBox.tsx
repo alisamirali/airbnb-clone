@@ -5,11 +5,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
 
-interface CategoryBoxProps {
+type CategoryBoxProps = {
   icon: IconType;
   label: string;
   selected?: boolean;
-}
+};
 
 export function CategoryBox({ icon: Icon, label, selected }: CategoryBoxProps) {
   const router = useRouter();
