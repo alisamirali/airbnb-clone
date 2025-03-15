@@ -1,13 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-interface IParams {
-  listingId?: string;
-}
-
-export async function POST(request: Request, { params }: { params: IParams }) {
+export async function POST(request: Request, { params }: { params: any }) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -36,10 +33,7 @@ export async function POST(request: Request, { params }: { params: IParams }) {
   return NextResponse.json(user);
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: IParams }
-) {
+export async function DELETE(request: Request, { params }: { params: any }) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
