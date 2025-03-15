@@ -5,12 +5,13 @@ import getListings from "@/app/actions/getListings";
 import { ClientOnly, Container, EmptyState } from "@/app/components";
 import ListingCard from "@/app/components/listings/ListingCard";
 
-const Home = async ({
-  searchParams,
-}: {
-  searchParams: { userId?: string };
-}) => {
-  const listings = await getListings(searchParams);
+interface HomeProps {
+  searchParams?: Record<string, string | string[] | undefined>;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const userId = searchParams?.userId as string | undefined;
+  const listings = await getListings({ userId });
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
