@@ -12,7 +12,7 @@ export default async function PropertiesPage() {
 
   const listings = await getListings({ userId: currentUser.id });
 
-  if (listings.length === 0) {
+  if (listings?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState
@@ -25,7 +25,7 @@ export default async function PropertiesPage() {
 
   return (
     <ClientOnly>
-      <PropertiesClient listings={listings} currentUser={currentUser} />
+      <PropertiesClient listings={listings!} currentUser={currentUser} />
     </ClientOnly>
   );
 }

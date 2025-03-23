@@ -91,6 +91,6 @@ export default async function getListings(params: IListingsParams) {
     return safeListings;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    throw new Error(error);
+    console.log("Error in getListings", error);
   }
 }

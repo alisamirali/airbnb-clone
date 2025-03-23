@@ -11,7 +11,7 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
   const listings = await getListings({ userId });
   const currentUser = await getCurrentUser();
 
-  if (listings.length === 0) {
+  if (listings?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState showReset />
@@ -23,7 +23,7 @@ const Home = async ({ searchParams }: { searchParams: any }) => {
     <ClientOnly>
       <Container>
         <div className="grid grid-cols-1 gap-8 pt-24 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-          {listings.map((listing) => (
+          {listings?.map((listing) => (
             <ListingCard
               currentUser={currentUser}
               key={listing.id}

@@ -16,7 +16,7 @@ export default async function TripsPage() {
 
   const reservations = await getReservations({ userId: currentUser.id });
 
-  if (reservations.length === 0) {
+  if (reservations?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState
@@ -29,7 +29,7 @@ export default async function TripsPage() {
 
   return (
     <ClientOnly>
-      <TripsClient reservations={reservations} currentUser={currentUser} />
+      <TripsClient reservations={reservations!} currentUser={currentUser} />
     </ClientOnly>
   );
 }

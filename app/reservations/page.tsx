@@ -16,7 +16,7 @@ export default async function ReservationsPage() {
 
   const reservations = await getReservations({ authorId: currentUser.id });
 
-  if (reservations.length === 0) {
+  if (reservations?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState
@@ -30,7 +30,7 @@ export default async function ReservationsPage() {
   return (
     <ClientOnly>
       <ReservationsClient
-        reservations={reservations}
+        reservations={reservations!}
         currentUser={currentUser}
       />
     </ClientOnly>

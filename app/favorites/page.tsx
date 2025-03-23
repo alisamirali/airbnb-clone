@@ -7,7 +7,7 @@ export default async function FavoritesPage() {
   const listings = await getFavoriteListings();
   const currentUser = await getCurrentUser();
 
-  if (listings.length === 0) {
+  if (listings?.length === 0) {
     return (
       <ClientOnly>
         <EmptyState
@@ -20,7 +20,7 @@ export default async function FavoritesPage() {
 
   return (
     <ClientOnly>
-      <FavoritesClient listings={listings} currentUser={currentUser} />
+      <FavoritesClient listings={listings!} currentUser={currentUser} />
     </ClientOnly>
   );
 }
